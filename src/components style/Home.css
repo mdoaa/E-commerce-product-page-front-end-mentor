@@ -1,0 +1,148 @@
+.home-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap:100px;
+}
+
+.product-image img{
+    width:450px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+}
+.image-container{
+    display: flex;
+    margin-top:50px;
+    margin-left: 350px;
+    flex-direction: column;
+}
+.thumbnails img{
+    border-radius: 10px;
+    width: 100px;
+    height: auto;
+}
+.thumbnails{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 10px;
+    width: 450px;
+
+}
+
+
+.product-brand{
+    font-size: 20px;
+    color: rgb(141, 140, 140);
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.product-details{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+
+}
+.product-description{
+    font-size: 18px;
+    color: rgb(141, 140, 140);
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.product-price{
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.product-price span{
+    font-size: 18px;
+    color: rgb(141, 140, 140);
+    margin-left: 10px;
+    background-color: black;
+    color:white;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+.original-price{
+    text-decoration: line-through;
+    color: rgb(141, 140, 140);
+    font-size: 18px;
+}
+
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.lightbox-content {
+  position: relative;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 400px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 10px;
+}
+
+.lightbox-image {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.lightbox-thumbnails {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: white;
+  border-radius: 50%;
+  font-size: 24px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+}
+
+.nav-btn{
+    background-color: white;
+    border: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    top: 45%;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+
+}
+.prev{
+    left: -20px;
+}
+.next{
+    right: -20px;
+}
