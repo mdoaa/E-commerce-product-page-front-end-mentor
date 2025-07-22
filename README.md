@@ -6,7 +6,7 @@ This is a responsive e-commerce product page built as part of the [Frontend Ment
 
 ## 🚀 Live Demo
 
-👉 [View Live Site](https://e-commerce-product-page-front-end.vercel.app/)  
+👉 [View Live Site](https://e-commerce-product-page-front-end-m.vercel.app/)  
 
 ---
 
