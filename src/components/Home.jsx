@@ -122,7 +122,14 @@ const Home = () => {
 
       {isLightBoxOpen && (
         <>
-          <div className="lightbox">
+          <div
+            className="lightbox"
+            onClick={(e) => {
+              if (e.target.classList.contains("lightbox")) {
+                closeLightBox();
+              }
+            }}
+          >
             <div className="lightbox-content">
               <Swiper
                 modules={[Navigation]}
