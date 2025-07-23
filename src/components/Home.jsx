@@ -1,23 +1,28 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import Nav from "./Nav";
 import "../components style/Home.css";
 import Button from "@mui/material/Button";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Stack from "@mui/material/Stack"; 
+import Stack from "@mui/material/Stack";
 import { CartContext } from "./CartContext";
 import { useContext } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
+
 const Home = () => {
   const [index, setIndex] = useState(0);
   const [isLightBoxOpen, setIsLightBoxOpen] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1);
 
-    const { cartQuantity, setCartQuantity } = useContext(CartContext);
+  const { cartQuantity, setCartQuantity } = useContext(CartContext);
 
   const handleIncrease = () => setQuantity((q) => q + 1);
   const handleDecrease = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
   const handleAddToCart = () => {
-    setCartQuantity(quantity)
+    setCartQuantity(quantity);
   };
   const images = [
     "image-product-1.jpg",
@@ -40,9 +45,28 @@ const Home = () => {
       <Nav />
       <div className="home-container">
         <div className="image-container">
-          <div className="product-image">
-            <img src={images[index]} alt="product 1" onClick={openLightBox} />
-          </div>
+          <Swiper
+            modules={[Navigation]}
+            navigation
+            spaceBetween={10}
+            slidesPerView={1}
+            className="swiper-container"
+          >
+            {images.map((img, idx) => (
+              <SwiperSlide key={idx}>
+                <img
+                  src={img}
+                  alt={`product ${idx + 1}`}
+                  className="swiper-slide-image"
+                  onClick={() => {
+                    setIndex(idx);
+                    openLightBox();
+                  }}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+
           <div className="thumbnails">
             {images.map((image, idx) => (
               <img
@@ -74,9 +98,13 @@ const Home = () => {
 
           <Stack direction="row" spacing={2} alignItems="center">
             <ButtonGroup variant="outlined">
-              <Button onClick={handleDecrease} color="warning">-</Button>
+              <Button onClick={handleDecrease} color="warning">
+                -
+              </Button>
               <Button disabled>{quantity}</Button>
-              <Button onClick={handleIncrease} color="warning">+</Button>
+              <Button onClick={handleIncrease} color="warning">
+                +
+              </Button>
             </ButtonGroup>
 
             <Button
