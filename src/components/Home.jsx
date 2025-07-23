@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Nav from "./Nav";
 import "../components style/Home.css";
 import Button from "@mui/material/Button";
@@ -19,6 +19,8 @@ const Home = () => {
 
   const { cartQuantity, setCartQuantity } = useContext(CartContext);
 
+  const swiperRef = useRef(null);
+
   const handleIncrease = () => setQuantity((q) => q + 1);
   const handleDecrease = () => setQuantity((q) => (q > 1 ? q - 1 : 1));
   const handleAddToCart = () => {
@@ -30,12 +32,6 @@ const Home = () => {
     "image-product-3.jpg",
     "image-product-4.jpg",
   ];
-
-  const nextImage = () =>
-    setIndex((prevIndex) => (prevIndex + 1) % images.length);
-
-  const prevImage = () =>
-    setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
 
   const openLightBox = () => setIsLightBoxOpen(true);
   const closeLightBox = () => setIsLightBoxOpen(false);
@@ -51,6 +47,7 @@ const Home = () => {
             spaceBetween={10}
             slidesPerView={1}
             className="swiper-container"
+            onSwiper={(swiper) => (swiperRef.current = swiper)}
           >
             {images.map((img, idx) => (
               <SwiperSlide key={idx}>
@@ -73,7 +70,10 @@ const Home = () => {
                 key={idx}
                 src={image}
                 alt={`thumbnail ${idx + 1}`}
-                onClick={() => setIndex(idx)}
+                onClick={() => {
+                  setIndex(idx);
+                  swiperRef.current?.slideTo(idx);
+                }}
               />
             ))}
           </div>
@@ -124,20 +124,31 @@ const Home = () => {
         <>
           <div className="lightbox">
             <div className="lightbox-content">
-              <img
-                src={images[index]}
-                alt={`lightbox image ${index + 1}`}
-                className="lightbox-image"
-              />
+              <Swiper
+                modules={[Navigation]}
+                navigation
+                spaceBetween={10}
+                slidesPerView={1}
+                className="swiper-container"
+                onSwiper={(swiper) => (swiperRef.current = swiper)}
+              >
+                {images.map((img, idx) => (
+                  <SwiperSlide key={idx}>
+                    <img
+                      src={img}
+                      alt={`product ${idx + 1}`}
+                      className="swiper-slide-image"
+                      onClick={() => {
+                        setIndex(idx);
+                        openLightBox();
+                      }}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
               <span className="close-btn" onClick={closeLightBox}>
                 &times;
               </span>
-              <button className=" nav-btn prev" onClick={prevImage}>
-                &#10094;
-              </button>
-              <button className="nav-btn next" onClick={nextImage}>
-                &#10095;
-              </button>
             </div>
 
             <div className="thumbnails">
@@ -146,7 +157,10 @@ const Home = () => {
                   key={idx}
                   src={image}
                   alt={`thumbnail ${idx + 1}`}
-                  onClick={() => setIndex(idx)}
+                  onClick={() => {
+                    setIndex(idx);
+                    swiperRef.current?.slideTo(idx);
+                  }}
                 />
               ))}
             </div>

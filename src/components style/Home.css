@@ -167,6 +167,14 @@
   cursor: pointer;
 }
 
+.swiper-button-next,
+.swiper-button-prev {
+  color: white !important; /* Orange */
+  font-size: 24px;
+  scale: 1.4;
+}
+
+
 
 
 @media (max-width: 768px) {
